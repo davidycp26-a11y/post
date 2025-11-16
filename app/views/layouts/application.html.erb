@@ -24,6 +24,24 @@
   </head>
 
   <body>
+    <header>
+      <div class="header-logo">
+        <%= link_to("Post","/") %>
+      </div>
+      <ul class="header-menus">
+        <li>
+          <%= link_to("About","/about") %>
+        </li>
+        <li>
+          <%= link_to("Posts", "/posts/index") %>
+        </li>
+        <li>
+          <%= link_to("New post", "/posts/new") %>
+        </li>
+      </ul>
+      
+    </header>
+
     <%= yield %>
   </body>
 </html>

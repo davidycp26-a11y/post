@@ -1,9 +1,14 @@
 Rails.application.routes.draw do
   get "posts/index" => "user_messages#index"
+  get "posts/new" => "user_messages#new"
+  post "posts/create" => "user_messages#create"
+  get "posts/:id" => "user_messages#show"
+ 
   resources :messages
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   get '/' => 'home#top'
   get '/about' => 'home#about'
+
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check
