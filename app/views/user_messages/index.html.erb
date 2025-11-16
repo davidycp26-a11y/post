@@ -1,0 +1,22 @@
+<%= stylesheet_link_tag("posts") %>
+
+<header>
+  <div class="header-logo">
+    <a href="/">Post</a>
+  </div>
+  <ul class="header-menus">
+    <li>
+      <a href="/about">About</a>
+    </li>
+  </ul>
+</header>
+
+<div class="main posts-index">
+  <div class="container">
+    <% @posts.each do |post| %>
+      <div class="posts-index-item">
+        <%= post.content %>
+      </div>
+    <% end %>
+  </div>
+</div>
