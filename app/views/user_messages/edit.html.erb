@@ -8,7 +8,7 @@
         <%= f.label :content, "Message" %>
         <%= f.text_area :content, rows: 5, class: "form-control" %>
         <%= f.submit "Save", class: "btn btn-primary" %>
-        <%= link_to "Back", user_messages_path, class: "btn btn-secondary" %> 
+        <%= link_to "Back", user_message_path(@user_message), class: "btn btn-secondary" %> 
       </div>
     </div>
   <% end %>

@@ -8,10 +8,11 @@
         <%= @user_message.created_at.strftime("%Y-%m-%d %H:%M:%S") %>
       </div>
       <div class="post-menus">
-        <%= link_to "Edit", edit_user_message_path(@user_message) %>
-        <%= link_to "Delete", user_message_path(@user_message), 
-        method: :delet, 
-        data: { confirm: "Are you sure?"} %>
+        <%= button_to "Edit", edit_user_message_path(@user_message),
+        method: :get %>
+        <%= button_to "Delete", user_message_path(@user_message), 
+          method: :delete, 
+          data: { confirm: "Are you sure?" } %>
       </div>
 
       <br>
