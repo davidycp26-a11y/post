@@ -1,18 +1,36 @@
 class UserMessagesController < ApplicationController
   def index
-    @posts = UserMessage.all.order(created_at: :desc)
+    @user_messages = UserMessage.all.order(created_at: :desc)
   end
 
   def show
-    @post = UserMessage.find_by(id: params[:id])
+    @user_message = UserMessage.find_by(id: params[:id])
   end
 
   def new
+    @user_message = UserMessage.new
   end
 
   def create
-    @post = UserMessage.new(content: params[:content], user_id: 1)
-    @post.save
-    redirect_to("/posts/index")
+    @user_message = UserMessage.new(content: params[:content], user_id: 1)
+    @user_message.save
+    redirect_to user_messages_path
+  end
+
+  def edit
+    @user_message = UserMessage.find_by(id: params[:id])
+  end
+
+  def update
+    @user_message = UserMessage.find_by(id: params[:id])
+    @user_message.content = params[:user_message][:content]
+    @user_message.save
+    redirect_to user_messages_path
+  end
+
+  def destroy
+    @user_message = UserMessage.find_by(id: params[:id])
+    @user_message.destroy
+    redirect_to user_messages_path
   end
 end

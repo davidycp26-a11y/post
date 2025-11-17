@@ -2,12 +2,23 @@
   <div class="container">
     <div class="posts-show-item">
       <p>
-        <%= @post.content %>
+        <%= @user_message.content %>
       </p>
       <div class="post-time">
-        <%= @post.created_at.strftime("%Y-%m-%d %H:%M:%S") %>
+        <%= @user_message.created_at.strftime("%Y-%m-%d %H:%M:%S") %>
       </div>
-      <%= link_to("Back", "/posts/index", class: "btn") %>
+      <div class="post-menus">
+        <%= link_to "Edit", edit_user_message_path(@user_message) %>
+        <%= link_to "Delete", user_message_path(@user_message), 
+        method: :delet, 
+        data: { confirm: "Are you sure?"} %>
+      </div>
+
+      <br>
+
+      <div>
+        <%= link_to "Back", user_messages_path, class: "btn" %>
+      </div>
     </div>
   </div>
 </div>
