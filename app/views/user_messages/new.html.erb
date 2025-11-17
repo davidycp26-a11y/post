@@ -1,11 +1,13 @@
 <div class="main posts-new">
   <div class="container">
     <h1 class="form-heading">Create a new post</h1>
-    <%= form_tag(new_user_message_path) do %>
+    <%= form_with model: @user_message, local: true do |f| %>
       <div class="form">
         <div class="form-body">
-          <textarea name="content"></textarea>
-          <input type="submit" value="Post">
+          <%= f.label :content, "Message" %>
+          <%= f.text_area :content, rows: 5, class: "form-control" %>
+          <%= f.submit "Post", class: "btn btn-primary" %>
+          <%= link_to "Back", user_messages_path, class: "btn btn-secondary" %>
         </div>
       </div>
     <% end %>

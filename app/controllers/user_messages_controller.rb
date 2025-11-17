@@ -12,7 +12,7 @@ class UserMessagesController < ApplicationController
   end
 
   def create
-    @user_message = UserMessage.new(content: params[:content], user_id: 1)
+    @user_message = UserMessage.new(content: params[:user_message][:content], user_id: 1)
     @user_message.save
     redirect_to user_messages_path
   end
