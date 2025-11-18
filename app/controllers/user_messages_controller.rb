@@ -13,8 +13,12 @@ class UserMessagesController < ApplicationController
 
   def create
     @user_message = UserMessage.new(content: params[:user_message][:content], user_id: 1)
-    @user_message.save
-    redirect_to user_messages_path
+    if @user_message.save
+      redirect_to user_messages_path
+    else
+      logger.debug "Validation errors: #{@user_message.errors.full_messages.join(', ')}"
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def edit
@@ -24,8 +28,13 @@ class UserMessagesController < ApplicationController
   def update
     @user_message = UserMessage.find_by(id: params[:id])
     @user_message.content = params[:user_message][:content]
-    @user_message.save
-    redirect_to user_messages_path
+    if @user_message.save
+      flash[:notice] = "Post was successfully updated."
+      redirect_to user_messages_path
+    else
+      logger.debug "Validation errors: #{@user_message.errors.full_messages.join(', ')}"
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy

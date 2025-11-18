@@ -1,7 +1,7 @@
 <div class="main posts-new">
   <div class="container">
     <h1 class="form-heading">Create a new post</h1>
-    <%= form_with model: @user_message, local: true do |f| %>
+    <%= form_with(model: @user_message, local: true, data: { turbo: false }) do |f| %>
       <div class="form">
         <div class="form-body">
           <%= f.label :content, "Message" %>
