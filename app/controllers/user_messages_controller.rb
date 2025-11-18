@@ -14,6 +14,7 @@ class UserMessagesController < ApplicationController
   def create
     @user_message = UserMessage.new(content: params[:user_message][:content], user_id: 1)
     if @user_message.save
+      flash[:notice] = "Post was successfully created."
       redirect_to user_messages_path
     else
       logger.debug "Validation errors: #{@user_message.errors.full_messages.join(', ')}"
