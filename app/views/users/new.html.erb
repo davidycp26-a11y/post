@@ -1,0 +1,25 @@
+<div class="main users-new">
+  <div class="container">
+    <div class="form-heading">Sign up</div>
+    <%= form_with(model: @user, local: true, data: { turbo: false }) do |f| %>
+    <div class="form users-form">
+      <div class="form-body">
+          <% @user.errors.full_messages.each do |msg| %>
+            <div class="form-error">
+              <%= msg %>
+            </div>
+          <% end %>
+
+        <%= f.label :name, "Name" %>
+        <%= f.text_field :name, class: "form-control" %>
+        
+        <%= f.label :email, "Email" %>
+        <%= f.email_field :email, class: "form-control" %>
+        
+        <%= f.submit "Sign up", class: "btn btn-primary" %>
+        <%= link_to "Back", root_path, class: "btn btn-secondary" %>    
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>

@@ -1,14 +1,8 @@
 Rails.application.routes.draw do
-  # get "posts/index" => "user_messages#index"
-  # get "posts/new" => "user_messages#new"
-  # post "posts/create" => "user_messages#create"
-  # get "posts/:id" => "user_messages#show"
-  # get "posts/:id/edit" => "user_messages#edit"
-  # post "posts/:id/update" => "user_messages#update"
-  # post "posts/:id/destroy" => "user_messages#destroy"
-  resources :user_messages
+  resources :users
 
-  resources :messages
+  resources :user_messages
+  
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   get '/' => 'home#top'
   get '/about' => 'home#about'
