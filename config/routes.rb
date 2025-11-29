@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
+  get "login" => "sessions#new", as: :login # create login_path
+  post   "login"  => "sessions#create"
+  delete "logout" => "sessions#destroy", as: :logout # create logout_path
+
   resources :users
 
   resources :user_messages
-  
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   get '/' => 'home#top'
   get '/about' => 'home#about'
