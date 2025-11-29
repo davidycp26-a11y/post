@@ -1,4 +1,7 @@
 class UserMessagesController < ApplicationController
+
+  before_action :require_login
+
   def index
     @user_messages = UserMessage.all.order(created_at: :desc)
   end

@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   helper_method :current_user, :logged_in?
+  before_action :current_user
 
   def current_user
     @current_user ||= User.find_by(id: session[:user_id])
@@ -12,7 +13,7 @@ class ApplicationController < ActionController::Base
   def require_login
     unless logged_in?
       flash[:alert] = "You must be logged in to access this section."
-      redirect_to new_session_path 
+      redirect_to login_path
     end
   end
 
