@@ -12,7 +12,11 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(name: params[:user][:name], email: params[:user][:email])
+    @user = User.new(
+      name: params[:user][:name], 
+      email: params[:user][:email],
+      password: params[:user][:password]
+      )
     if @user.save
       flash[:notice] = "User was successfully created."
       redirect_to user_path(@user)

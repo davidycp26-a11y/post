@@ -228,8 +228,9 @@ header {
 .flash {
   padding: 10px 0;
   color: white;
-  background: rgb(103, 100, 248);
+  background: #82D1F1;
   text-align: center;
+  font-weight: bold;  
   position: absolute;
   top: 64px;
   z-index: 10;
@@ -240,7 +241,11 @@ header {
   opacity: 1;
 }
 
+.flash.alert {
+  background: #ff2626;
+}
+
 @keyframes flash-fade {
   0%, 75% { opacity: 1; }    /*  3 sec visible (3/4 ≈ 75%) */
-  100%     { opacity: 0; }    /* fade out in last sec */
+  100%    { opacity: 0; }    /* fade out in last sec */
 }
