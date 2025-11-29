@@ -1,4 +1,9 @@
 class UsersController < ApplicationController
+
+  before_action :require_login, except: [:new, :create]
+  before_action :require_logout, only: [:new, :create]
+  before_action :ensure_correct_user, only: [:edit, :update]
+
   def index
     @users = User.all.order(created_at: :desc)
   end
@@ -18,6 +23,7 @@ class UsersController < ApplicationController
       password: params[:user][:password]
       )
     if @user.save
+      session[:user_id] = @user.id
       flash[:notice] = "User was successfully created."
       redirect_to user_path(@user)
     else
@@ -43,4 +49,11 @@ class UsersController < ApplicationController
     end
   end
 
+  def ensure_correct_user
+    @user = User.find_by(id: params[:id])
+    unless @user.id == @current_user.id
+      flash[:alert] = "Unauthorized access"
+      redirect_to user_messages_path
+    end
+  end
 end
