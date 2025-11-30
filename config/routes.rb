@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+
+  # ---[Sessions]---
   get "login" => "sessions#new", as: :login # create login_path
   post   "login"  => "sessions#create"
   delete "logout" => "sessions#destroy", as: :logout # create logout_path
@@ -7,7 +9,8 @@ Rails.application.routes.draw do
 
   resources :user_messages
 
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  resources :likes, only: [:create, :destroy]
+
   get '/' => 'home#top'
   get '/about' => 'home#about'
 
@@ -15,13 +18,8 @@ Rails.application.routes.draw do
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check
 
-  # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
-  # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
-  # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
-
   # Defines the root path route ("/")
   root "home#top"
 
-  # root "posts#index"
   mount MissionControl::Jobs::Engine, at: "/jobs"
 end
