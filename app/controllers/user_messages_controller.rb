@@ -1,6 +1,7 @@
 class UserMessagesController < ApplicationController
 
   before_action :require_login
+  before_action :ensure_correct_user, only: [:edit, :update, :destroy]
 
   def index
     @user_messages = UserMessage.all.order(created_at: :desc)
@@ -8,6 +9,7 @@ class UserMessagesController < ApplicationController
 
   def show
     @user_message = UserMessage.find_by(id: params[:id])
+    @user = @user_message.user
   end
 
   def new
@@ -15,7 +17,10 @@ class UserMessagesController < ApplicationController
   end
 
   def create
-    @user_message = UserMessage.new(content: params[:user_message][:content], user_id: 1)
+    @user_message = UserMessage.new(
+      content: params[:user_message][:content], 
+      user_id: @current_user.id
+      )
     if @user_message.save
       flash[:notice] = "Post was successfully created."
       redirect_to user_messages_path
@@ -45,5 +50,13 @@ class UserMessagesController < ApplicationController
     @user_message = UserMessage.find_by(id: params[:id])
     @user_message.destroy
     redirect_to user_messages_path
+  end
+
+  def ensure_correct_user
+    @user_message = UserMessage.find_by(id: params[:id])
+    unless @user_message.user_id == @current_user.id
+      flash[:alert] = "Unauthorized access"
+      redirect_to user_messages_path
+    end
   end
 end

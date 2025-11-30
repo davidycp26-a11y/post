@@ -1,19 +1,25 @@
 <div class="main posts-show">
   <div class="container">
     <div class="posts-show-item">
+      <div class="post-user-name">
+        <%= link_to(@user.name, user_path(@user.id)) %> 
+      </div>
       <p>
         <%= @user_message.content %>
       </p>
       <div class="post-time">
         <%= @user_message.created_at.strftime("%Y-%m-%d %H:%M:%S") %>
       </div>
-      <div class="post-menus">
-        <%= button_to "Edit", edit_user_message_path(@user_message),
-        method: :get %>
-        <%= button_to "Delete", user_message_path(@user_message), 
-          method: :delete, 
-          data: { confirm: "Are you sure?" } %>
-      </div>
+      
+      <% if @user_message.user_id == @current_user.id %>
+        <div class="post-menus">
+          <%= button_to "Edit", edit_user_message_path(@user_message),
+          method: :get %>
+          <%= button_to "Delete", user_message_path(@user_message), 
+            method: :delete, 
+            data: { confirm: "Are you sure?" } %>
+        </div>
+      <% end %>
 
       <br>
 

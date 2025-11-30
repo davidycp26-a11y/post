@@ -2,7 +2,14 @@
   <div class="container">
     <% @user_messages.each do |msg| %>
       <div class="posts-index-item">
-        <%= link_to msg.content, user_message_path(msg) %>
+        <div class="post-left">
+        </div>
+        <div class="post-right">
+            <div class="post-user-name">
+              <%= link_to(msg.user.name, user_path(msg.user)) %>
+            </div>
+          <%= link_to msg.content, user_message_path(msg) %>
+        </div>
       </div>
     <% end %>
   </div>
