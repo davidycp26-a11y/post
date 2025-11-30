@@ -2,7 +2,7 @@
   <div class="container">
     <div class="posts-show-item">
       <div class="post-user-name">
-        <%= link_to(@user.name, user_path(@user.id)) %> 
+        <%= link_to @user.name, @user %>
       </div>
       <p>
         <%= @user_message.content %>
@@ -10,7 +10,19 @@
       <div class="post-time">
         <%= @user_message.created_at.strftime("%Y-%m-%d %H:%M:%S") %>
       </div>
-      
+
+      <% like = Like.find_by(user_id: current_user.id, user_message_id: @user_message.id) %>
+      <% if like %>
+        <%= button_to like_path(like), method: :delete, class: "like-button liked", form: { data: { turbo: true } } do %>
+          <i class="fa fa-heart"></i>
+        <% end %>
+      <% else %>
+        <%= button_to likes_path(user_message_id: @user_message.id), method: :post, class: "like-button not-liked", form: { data: { turbo: true } } do %>
+          <i class="fa fa-heart"></i>
+        <% end %>
+      <% end %>
+
+
       <% if @user_message.user_id == @current_user.id %>
         <div class="post-menus">
           <%= button_to "Edit", edit_user_message_path(@user_message),

@@ -126,3 +126,23 @@
   opacity: 0.5;
 }
 
+/* like button ================================ */
+.like-button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-size: 24px;
+}
+
+.like-button.liked {
+  color: #e74c3c;
+}
+
+.like-button.not-liked {
+  color: #b0e3f3;
+}
+
+.like-button:hover {
+  opacity: 0.7;
+}
