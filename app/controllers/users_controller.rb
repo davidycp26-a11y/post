@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find_by(id: params[:id])
+    @user = User.find(params[:id])
   end
 
   def new
@@ -16,11 +16,9 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(
-      name: params[:user][:name], 
-      email: params[:user][:email],
-      password: params[:user][:password]
-      )
+    @user = User.new(user_params)
+    @user.image_name ||= "default.png"
+      
     if @user.save
       session[:user_id] = @user.id
       flash[:notice] = "User was successfully created."
@@ -36,23 +34,29 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.find_by(id: params[:id])
-    @user.name = params[:user][:name]
-    @user.email = params[:user][:email]
-    if @user.save
+    @user = User.find(params[:id])
+
+    if @user.update(user_params)
       flash[:notice] = "User was successfully updated."
       redirect_to user_path(@user)
     else
-      logger.debug "Validation errors: #{@user.errors.full_messages.join(', ')}"
       render :edit, status: :unprocessable_entity
     end
   end
 
   def ensure_correct_user
-    @user = User.find_by(id: params[:id])
+    @user = User.find(params[:id])
     unless @user.id == @current_user.id
       flash[:alert] = "Unauthorized access"
       redirect_to user_messages_path
     end
+  end
+
+  private
+
+  def user_params
+    permitted = [:name, :email, :image_name]
+    permitted << :password if action_name == "create" || params[:user][:password].present?
+    params.require(:user).permit(*permitted)
   end
 end

@@ -15,5 +15,23 @@ class User < ApplicationRecord
     uniqueness: true, 
     format: { with: URI::MailTo::EMAIL_REGEXP }
   }
+  
+  # [Active Storage for Avatar Image]
+  has_one_attached :avatar # Uncomment this line if using Active Storage for avatar uploads
+  # app/models/user.rb
+
+  def self.avatar_options
+    @avatar_options ||= Dir.glob("app/assets/images/avatars/*.png")
+      .map{ |path| File.basename(path) }
+      .sort
+  end
+
+  def avatar_url
+    if image_name.present?
+      "/avatars/#{image_name}"   # public/avatars/xxx.png
+    else
+      "/avatars/default.png"     # public/avatars/default.png
+    end
+  end
 
 end

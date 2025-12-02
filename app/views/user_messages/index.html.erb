@@ -3,6 +3,7 @@
     <% @user_messages.each do |msg| %>
       <div class="posts-index-item">
         <div class="post-left">
+        <%= image_tag(msg.user.avatar_url, class: "user-image") %>
         </div>
         <div class="post-right">
             <div class="post-user-name">

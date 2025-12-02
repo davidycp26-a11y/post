@@ -1,6 +1,7 @@
 <div class="main user-show">
   <div class="container">
     <div class="user">
+      <%= image_tag(@user.avatar_url, class: "user-image") %>
       <h2><%= @user.name %></h2>
       <% if @current_user && @user.id == @current_user.id %>
         <p><%= @user.email %></p>
@@ -10,6 +11,7 @@
     <% @user.user_messages.each do |msg| %>
       <div class="posts-index-item">
         <div class="post-left">
+          <%= image_tag(@user.avatar_url, class: "user-image") %>
         </div>
         <div class="post-right">
             <div class="post-user-name">
