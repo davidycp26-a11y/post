@@ -10,6 +10,7 @@ class UserMessagesController < ApplicationController
   def show
     @user_message = UserMessage.find_by(id: params[:id])
     @user = @user_message.user
+    @likes_count = Like.where(user_message_id: @user_message.id).count
   end
 
   def new

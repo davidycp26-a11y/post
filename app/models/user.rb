@@ -6,7 +6,7 @@ class User < ApplicationRecord
   # use @user.user_messages to get all messages for a user, ordered by creation time descending
 
   # [Validations]
-  validates :name,  {
+  validates :name, {
     presence: true, 
     length: {maximum: 50}
   }
