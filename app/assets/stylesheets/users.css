@@ -114,3 +114,43 @@
 .users-form input {
   margin-bottom: 15px;
 }
+
+/* Avatar selection ================================ */
+.avatar-select-area {
+  display: flex;
+  gap: 20px;
+}
+
+.preview-box {
+  width: 150px;
+  text-align: center;
+}
+
+.avatar-preview-image {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 3px solid #7da9ff;
+  margin-top: 10px;
+}
+
+.avatar-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  max-width: 400px;
+}
+
+.avatar-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+}
+
+.avatar-thumb {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border: 2px solid #ddd;
+}

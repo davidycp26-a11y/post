@@ -21,8 +21,8 @@ class User < ApplicationRecord
   # app/models/user.rb
 
   def self.avatar_options
-    @avatar_options ||= Dir.glob("app/assets/images/avatars/*.png")
-      .map{ |path| File.basename(path) }
+    Dir.glob(Rails.root.join("public", "avatars", "*.png"))
+      .map { |path| File.basename(path) }
       .sort
   end
 

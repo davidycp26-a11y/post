@@ -16,6 +16,36 @@
           <%= f.label :email, "Email" %>
           <%= f.email_field :email, class: "form-control" %>
           
+          <hr>
+          
+          <h3>Choose Your Avatar</h3>
+
+          <div data-controller="avatar-preview" class="avatar-select-area">
+
+          <!-- Preview -->
+          <div class="preview-box">
+            <p>Preview</p>
+            <img 
+              src="<%= @user.avatar_url %>" 
+              data-avatar-preview-target="preview"
+              class="avatar-preview-image"
+            >
+          </div>
+
+          <!-- 頭像選擇清單 -->
+          <div class="avatar-list">
+            <% User.avatar_options.each do |filename| %>
+              <label class="avatar-option">
+                <%= f.radio_button :image_name, filename, 
+                      checked: @user.image_name == filename,
+                      data: { action: "avatar-preview#change" } %>
+
+                <%= image_tag("/avatars/#{filename}", class: "avatar-thumb") %>
+              </label>
+            <% end %>
+          </div>
+
+        </div>
           <%= f.submit "Submit", class: "btn btn-primary" %>
           <%= link_to "Back", user_path(@user), class: "btn btn-secondary" %>    
         </div>
