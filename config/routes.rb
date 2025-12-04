@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   delete "logout" => "sessions#destroy", as: :logout # create logout_path
 
   resources :users
+  get 'users/:id/likes' => 'users#likes', as: :user_likes # create user_likes_path
 
   resources :user_messages
 

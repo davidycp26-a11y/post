@@ -44,6 +44,11 @@ class UsersController < ApplicationController
     end
   end
 
+  def likes
+    @user = User.find(params[:id])
+    @likes = Like.where(user_id: @user.id).order(created_at: :desc)
+  end
+
   def ensure_correct_user
     @user = User.find(params[:id])
     unless @user.id == @current_user.id
