@@ -2,10 +2,11 @@ class User < ApplicationRecord
   has_secure_password
 
   # [Associations]
-  has_many :user_messages, -> { order(created_at: :desc) } # Establishes a one-to-many relationship with UserMessage, 
+  has_many :user_messages, -> { order(created_at: :desc) } # Establishes a one-to-many relationship with UserMessage,
   # use @user.user_messages to get all messages for a user, ordered by creation time descending
   has_many :likes, dependent: :destroy
   has_many :liked_messages, through: :likes, source: :user_message
+  has_many :comments, dependent: :destroy
   
   # [Validations]
   validates :name, {

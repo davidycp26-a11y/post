@@ -1,9 +1,106 @@
 <%= stylesheet_link_tag("home") %>
 
 <div class="main top-main">
-    <div class="top-message">
-        <h2>Write Your Post.</h2>
-        <h2>Connect with Others.</h2>
-        <p>share your ideas!</p>
+    <div class="hero-content">
+        <div class="hero-badge">
+            <i class="fas fa-bolt"></i>
+            <span>Simple. Fast. Connected.</span>
+        </div>
+
+        <h1 class="hero-title">
+            Share Your Voice<br>
+            <span class="hero-highlight">Connect With The World</span>
+        </h1>
+
+        <p class="hero-description">
+            Join a vibrant community where your thoughts matter. Share ideas,
+            spark conversations, and build meaningful connections with people
+            who inspire you.
+        </p>
+
+        <div class="hero-cta">
+            <% if logged_in? %>
+                <%= link_to new_user_message_path, class: "btn btn-hero btn-primary" do %>
+                    <i class="fas fa-pencil-alt"></i> Create Post
+                <% end %>
+                <%= link_to user_messages_path, class: "btn btn-hero btn-secondary-hero" do %>
+                    <i class="fas fa-comments"></i> Browse Posts
+                <% end %>
+            <% else %>
+                <%= link_to new_user_path, class: "btn btn-hero btn-primary" do %>
+                    <i class="fas fa-rocket"></i> Get Started Free
+                <% end %>
+                <%= link_to login_path, class: "btn btn-hero btn-secondary-hero" do %>
+                    <i class="fas fa-sign-in-alt"></i> Sign In
+                <% end %>
+            <% end %>
+        </div>
+
+        <div class="hero-stats">
+            <div class="stat-item">
+                <i class="fas fa-users"></i>
+                <div class="stat-content">
+                    <span class="stat-number"><%= User.count %></span>
+                    <span class="stat-label">Active Members</span>
+                </div>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-comments"></i>
+                <div class="stat-content">
+                    <span class="stat-number"><%= UserMessage.count %></span>
+                    <span class="stat-label">Posts Shared</span>
+                </div>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-heart"></i>
+                <div class="stat-content">
+                    <span class="stat-number"><%= Like.count %></span>
+                    <span class="stat-label">Reactions</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="hero-features">
+        <div class="feature-card">
+            <div class="feature-icon">
+                <i class="fas fa-bolt"></i>
+            </div>
+            <h3>Lightning Fast</h3>
+            <p>Share your thoughts instantly and connect in real-time</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">
+                <i class="fas fa-shield-alt"></i>
+            </div>
+            <h3>Safe & Secure</h3>
+            <p>Your data is protected with industry-standard security</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">
+                <i class="fas fa-globe"></i>
+            </div>
+            <h3>Global Community</h3>
+            <p>Connect with inspiring people from around the world</p>
+        </div>
+    </div>
+
+    <!-- Cartoon-Style Decorative Elements -->
+    <div class="hero-decoration">
+        <div class="decoration-circle decoration-1"></div>
+        <div class="decoration-circle decoration-2"></div>
+        <div class="decoration-circle decoration-3"></div>
+
+        <!-- Floating Emojis -->
+        <div class="floating-emoji emoji-1">💭</div>
+        <div class="floating-emoji emoji-2">❤️</div>
+        <div class="floating-emoji emoji-3">🎨</div>
+        <div class="floating-emoji emoji-4">🚀</div>
+        <div class="floating-emoji emoji-5">⭐</div>
+        <div class="floating-emoji emoji-6">🌈</div>
+        <div class="floating-emoji emoji-7">💡</div>
+        <div class="floating-emoji emoji-8">🎯</div>
     </div>
 </div>

@@ -1,17 +1,79 @@
 <div class="main posts-index">
   <div class="container">
-    <% @user_messages.each do |msg| %>
-      <div class="posts-index-item">
-        <div class="post-left">
-        <%= image_tag(msg.user.avatar_url, class: "user-image") %>
+    <div class="split-layout">
+      <!-- Left Panel: Posts List -->
+      <div class="posts-list-panel">
+        <!-- Sort Filter -->
+        <div class="posts-filter">
+          <div class="filter-label">
+            <i class="fas fa-filter"></i> Sort by:
+          </div>
+          <div class="filter-buttons">
+            <%= link_to user_messages_path(sort_by: 'recent'),
+                class: "filter-btn #{@sort_by == 'recent' ? 'active' : ''}" do %>
+              <i class="fas fa-clock"></i> Recent
+            <% end %>
+            <%= link_to user_messages_path(sort_by: 'likes'),
+                class: "filter-btn #{@sort_by == 'likes' ? 'active' : ''}" do %>
+              <i class="fas fa-heart"></i> Most Liked
+            <% end %>
+          </div>
         </div>
-        <div class="post-right">
-            <div class="post-user-name">
-              <%= link_to(msg.user.name, user_path(msg.user)) %>
+
+        <!-- Posts List -->
+        <div class="posts-list-scroll">
+          <% @user_messages.each do |msg| %>
+      <div class="posts-index-item">
+        <div class="post-avatar">
+          <%= link_to user_path(msg.user) do %>
+            <%= image_tag(msg.user.avatar_url, class: "avatar-img") %>
+          <% end %>
+        </div>
+        <div class="post-body">
+          <div class="post-header">
+            <div class="post-author">
+              <%= link_to msg.user.name, user_path(msg.user), class: "author-name" %>
+              <span class="post-timestamp">
+                <i class="far fa-clock"></i>
+                <%= time_ago_in_words(msg.created_at) %> ago
+              </span>
             </div>
-          <%= link_to msg.content, user_message_path(msg) %>
+          </div>
+
+          <div class="post-content-preview">
+            <%= link_to user_message_path(msg), class: "content-link", data: { turbo_frame: "post_detail" } do %>
+              <%= truncate(msg.content, length: 200) %>
+            <% end %>
+          </div>
+
+          <div class="post-footer-meta">
+            <div class="meta-stats">
+              <span class="meta-item meta-likes" data-count="<%= msg.likes.count %>">
+                <i class="fa fa-heart"></i>
+                <span class="count"><%= msg.likes.count %></span>
+              </span>
+              <span class="meta-item meta-comments" data-count="<%= msg.comments.count %>">
+                <i class="fas fa-comment"></i>
+                <span class="count"><%= msg.comments.count %></span>
+              </span>
+            </div>
+          </div>
         </div>
       </div>
-    <% end %>
+          <% end %>
+        </div>
+      </div>
+
+      <!-- Right Panel: Post Detail -->
+      <div class="post-detail-panel">
+        <%= turbo_frame_tag "post_detail" do %>
+          <div class="post-detail-placeholder">
+            <i class="fas fa-arrow-left"></i>
+            <h3>Select a post to view</h3>
+            <p>Click on any post from the list to see its full content and comments</p>
+          </div>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>

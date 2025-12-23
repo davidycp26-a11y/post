@@ -1,0 +1,44 @@
+<div class="main posts-edit">
+  <div class="container">
+    <h1 class="form-heading">Edit Comment</h1>
+
+    <%= form_with(model: @comment, local: true, data: { turbo: false }) do |f| %>
+      <div class="form">
+        <div class="form-body">
+          <% @comment.errors.full_messages.each do |msg| %>
+            <div class="form-error"><%= msg %></div>
+          <% end %>
+
+          <%= f.label :content, "Comment" %>
+          <%= f.text_area :content, rows: 3, class: "form-control", maxlength: 200, id: "edit-char-textarea" %>
+          <div class="char-count"><span id="edit-char-counter">0</span> / 200</div>
+
+          <%= f.hidden_field :user_message_id, value: @user_message.id %>
+
+          <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+            <%= f.submit "Save", class: "btn btn-primary" %>
+            <%= link_to user_message_path(@user_message), class: "btn btn-back" do %>
+              <i class="fas fa-times"></i> Cancel
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const textarea = document.getElementById('edit-char-textarea');
+    const counter = document.getElementById('edit-char-counter');
+
+    if (textarea && counter) {
+      textarea.addEventListener('input', function() {
+        counter.textContent = this.value.length;
+      });
+
+      // Initialize counter
+      counter.textContent = textarea.value.length;
+    }
+  });
+</script>

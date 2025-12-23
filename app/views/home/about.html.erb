@@ -1,10 +1,171 @@
 <%= stylesheet_link_tag("home") %>
 
 <div class="about-main">
-  <h2>About Post</h2>
-  <p>
-    Post is a social networking service.
-    Users can post and interact with short messages.
-  </p>
-    <a href="https://www.flaticon.com/free-icons/animals" title="animals icons" class="reference">Animals icons created by Freepik - Flaticon</a>
+  <div class="about-container">
+    <div class="about-header">
+      <h1>About Post</h1>
+      <p class="about-tagline">Where voices connect and ideas flourish</p>
+    </div>
+
+    <div class="about-section">
+      <div class="about-icon">
+        <i class="fas fa-heart"></i>
+      </div>
+      <h2>Our Story</h2>
+      <p>
+        Post was created with a simple belief: everyone has a story worth sharing.
+        In a world where genuine connection matters more than ever, we built a platform
+        that puts your voice first—no algorithms hiding your thoughts, no complicated
+        features getting in the way. Just you, your ideas, and a community ready to listen.
+      </p>
+    </div>
+
+    <div class="about-section">
+      <div class="about-icon">
+        <i class="fas fa-lightbulb"></i>
+      </div>
+      <h2>Our Mission</h2>
+      <p>
+        We believe in the power of authentic expression. Our mission is to create a
+        welcoming space where people can share their thoughts, spark meaningful conversations,
+        and build genuine connections. Whether you're sharing a moment of inspiration,
+        asking a question, or simply expressing yourself, Post is your canvas.
+      </p>
+    </div>
+
+    <div class="about-features">
+      <h2>Why Choose Post?</h2>
+
+      <div class="feature-grid">
+        <div class="feature-item">
+          <div class="feature-icon-small">
+            <i class="fas fa-bolt"></i>
+          </div>
+          <h3>Simple & Fast</h3>
+          <p>Share your thoughts instantly. No clutter, no distractions—just pure, seamless expression.</p>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-icon-small">
+            <i class="fas fa-users"></i>
+          </div>
+          <h3>Real Community</h3>
+          <p>Connect with people who value genuine interaction. Build relationships that matter.</p>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-icon-small">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <h3>Your Privacy Matters</h3>
+          <p>We respect your data and protect your privacy. Your posts, your control.</p>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-icon-small">
+            <i class="fas fa-heart"></i>
+          </div>
+          <h3>Support & Appreciation</h3>
+          <p>Show love for posts that resonate with you. Every reaction builds connection.</p>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-icon-small">
+            <i class="fas fa-globe"></i>
+          </div>
+          <h3>Global Reach</h3>
+          <p>Your voice can reach people across the world. Share ideas without boundaries.</p>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-icon-small">
+            <i class="fas fa-mobile-alt"></i>
+          </div>
+          <h3>Always Accessible</h3>
+          <p>Access your community anywhere, anytime. Responsive design for all devices.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="about-section">
+      <div class="about-icon">
+        <i class="fas fa-compass"></i>
+      </div>
+      <h2>Our Values</h2>
+      <ul class="values-list">
+        <li><strong>Authenticity:</strong> Be yourself. Real voices create real connections.</li>
+        <li><strong>Respect:</strong> Every person deserves to be heard and treated with dignity.</li>
+        <li><strong>Simplicity:</strong> Great experiences don't need complexity.</li>
+        <li><strong>Community:</strong> Together, we're stronger. Every member matters.</li>
+        <li><strong>Growth:</strong> Learn, evolve, and inspire each other daily.</li>
+      </ul>
+    </div>
+
+    <div class="about-stats">
+      <h2>Our Growing Community</h2>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <i class="fas fa-users"></i>
+          <div class="stat-number"><%= User.count %></div>
+          <div class="stat-label">Active Members</div>
+        </div>
+        <div class="stat-card">
+          <i class="fas fa-comments"></i>
+          <div class="stat-number"><%= UserMessage.count %></div>
+          <div class="stat-label">Posts Shared</div>
+        </div>
+        <div class="stat-card">
+          <i class="fas fa-heart"></i>
+          <div class="stat-number"><%= Like.count %></div>
+          <div class="stat-label">Reactions Given</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="about-cta">
+      <h2>Ready to Share Your Voice?</h2>
+      <p>Join our community and start connecting with people who inspire you.</p>
+      <div class="cta-buttons">
+        <% if logged_in? %>
+          <%= link_to new_user_message_path, class: "btn btn-hero btn-primary" do %>
+            <i class="fas fa-pencil-alt"></i> Create Your First Post
+          <% end %>
+        <% else %>
+          <%= link_to new_user_path, class: "btn btn-hero btn-primary" do %>
+            <i class="fas fa-rocket"></i> Join Post Today
+          <% end %>
+          <%= link_to login_path, class: "btn btn-hero btn-secondary-hero" do %>
+            <i class="fas fa-sign-in-alt"></i> Sign In
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="about-footer">
+      <div class="credits">
+        <h3>Credits & Acknowledgments</h3>
+        <p>
+          <i class="fas fa-icons"></i>
+          <a href="https://www.flaticon.com/free-icons/animals" title="animals icons" target="_blank" rel="noopener noreferrer">
+            Avatar icons created by Freepik - Flaticon
+          </a>
+        </p>
+        <p>
+          <i class="fas fa-palette"></i>
+          Colors inspired by <a href="https://nipponcolors.com/" target="_blank" rel="noopener noreferrer">NIPPON COLORS</a> - Traditional Japanese color palette
+        </p>
+        <p>
+          <i class="fas fa-images"></i>
+          Background images from <a href="https://unsplash.com/" target="_blank" rel="noopener noreferrer">Unsplash</a>
+        </p>
+      </div>
+
+      <div class="contact-info">
+        <p>Have questions or feedback? We'd love to hear from you.</p>
+        <p class="made-with-love">
+          <i class="fas fa-heart"></i> Built with care for meaningful connections
+        </p>
+      </div>
+    </div>
+  </div>
 </div>

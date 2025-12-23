@@ -4,13 +4,25 @@ class UserMessagesController < ApplicationController
   before_action :ensure_correct_user, only: [:edit, :update, :destroy]
 
   def index
-    @user_messages = UserMessage.all.order(created_at: :desc)
+    @sort_by = params[:sort_by] || 'recent'
+
+    if @sort_by == 'likes'
+      # Sort by number of likes (most liked first)
+      @user_messages = UserMessage.left_joins(:likes)
+                                   .group(:id)
+                                   .order('COUNT(likes.id) DESC, user_messages.created_at DESC')
+    else
+      # Default: sort by creation time (newest first)
+      @user_messages = UserMessage.all.order(created_at: :desc)
+    end
   end
 
   def show
     @user_message = UserMessage.find_by(id: params[:id])
     @user = @user_message.user
     @likes_count = Like.where(user_message_id: @user_message.id).count
+    @comments = @user_message.comments.includes(:user)
+    @comment = Comment.new
   end
 
   def new

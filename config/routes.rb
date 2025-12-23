@@ -12,6 +12,8 @@ Rails.application.routes.draw do
 
   resources :likes, only: [:create, :destroy]
 
+  resources :comments, only: [:create, :edit, :update, :destroy]
+
   get '/' => 'home#top'
   get '/about' => 'home#about'
 

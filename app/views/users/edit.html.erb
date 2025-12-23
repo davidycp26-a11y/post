@@ -47,7 +47,9 @@
 
         </div>
           <%= f.submit "Submit", class: "btn btn-primary" %>
-          <%= link_to "Back", user_path(@user), class: "btn btn-secondary" %>    
+          <%= link_to user_path(@user), class: "btn btn-back" do %>
+            <i class="fas fa-arrow-left"></i> Back
+          <% end %>    
         </div>
       </div>
     <% end %>

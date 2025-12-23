@@ -1,0 +1,32 @@
+<div class="comment-item" id="comment-<%= comment.id %>">
+  <div class="comment-layout">
+    <div class="comment-left">
+      <%= image_tag(comment.user.avatar_url) %>
+    </div>
+
+    <div class="comment-right">
+      <div class="comment-header">
+        <%= link_to comment.user.name, user_path(comment.user), class: "comment-user-name" %>
+        <span class="comment-time"><%= time_ago_in_words(comment.created_at) %> ago</span>
+      </div>
+
+      <div class="comment-content">
+        <p><%= comment.content %></p>
+      </div>
+
+      <% if current_user && comment.user_id == current_user.id %>
+        <div class="comment-actions">
+          <%= link_to edit_comment_path(comment), class: "btn-comment-edit" do %>
+            <i class="fas fa-edit"></i> Edit
+          <% end %>
+          <%= button_to comment_path(comment),
+              method: :delete,
+              class: "btn-comment-delete",
+              data: { confirm: "Delete this comment?", turbo: true } do %>
+            <i class="fas fa-trash"></i> Delete
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
