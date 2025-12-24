@@ -1,4 +1,4 @@
-<div class="comment-item" id="comment-<%= comment.id %>">
+<div class="comment-item" id="comment-<%= comment.id %>" data-controller="comment-edit">
   <div class="comment-layout">
     <div class="comment-left">
       <%= image_tag(comment.user.avatar_url) %>
@@ -10,15 +10,33 @@
         <span class="comment-time"><%= time_ago_in_words(comment.created_at) %> ago</span>
       </div>
 
-      <div class="comment-content">
+      <!-- Display Mode -->
+      <div class="comment-content" data-comment-edit-target="display">
         <p><%= comment.content %></p>
       </div>
 
+      <!-- Edit Mode -->
+      <div class="comment-edit-form" data-comment-edit-target="form" style="display: none;">
+        <%= form_with(model: comment, class: "inline-comment-form") do |f| %>
+          <%= f.text_area :content,
+              rows: 3,
+              class: "form-control",
+              maxlength: 200,
+              data: { comment_edit_target: "textarea" } %>
+          <div class="comment-edit-actions">
+            <%= f.submit "Save", class: "btn btn-primary btn-sm" %>
+            <button type="button" class="btn btn-back btn-sm" data-action="click->comment-edit#cancel">
+              Cancel
+            </button>
+          </div>
+        <% end %>
+      </div>
+
       <% if current_user && comment.user_id == current_user.id %>
-        <div class="comment-actions">
-          <%= link_to edit_comment_path(comment), class: "btn-comment-edit" do %>
+        <div class="comment-actions" data-comment-edit-target="actions">
+          <button type="button" class="btn-comment-edit" data-action="click->comment-edit#edit">
             <i class="fas fa-edit"></i> Edit
-          <% end %>
+          </button>
           <%= button_to comment_path(comment),
               method: :delete,
               class: "btn-comment-delete",

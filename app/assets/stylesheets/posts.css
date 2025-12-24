@@ -1045,6 +1045,24 @@
   background: rgba(216, 70, 84, 0.1);
 }
 
+/* Inline Comment Edit Form */
+.comment-edit-form {
+  margin-top: var(--spacing-sm);
+}
+
+.inline-comment-form textarea {
+  width: 100%;
+  resize: vertical;
+  min-height: 80px;
+  margin-bottom: var(--spacing-sm);
+}
+
+.comment-edit-actions {
+  display: flex;
+  gap: var(--spacing-sm);
+  align-items: center;
+}
+
 /* Comment Form */
 .comment-form-container {
   background: var(--color-white);

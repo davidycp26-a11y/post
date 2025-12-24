@@ -23,10 +23,10 @@ class CommentsController < ApplicationController
   def update
     if @comment.update(comment_params)
       flash[:notice] = "Comment updated successfully"
-      redirect_to user_message_path(@comment.user_message)
+      redirect_to user_message_path(@comment.user_message), status: :see_other
     else
       flash[:alert] = @comment.errors.full_messages.join(", ")
-      render :edit
+      redirect_to user_message_path(@comment.user_message), status: :see_other
     end
   end
 
@@ -34,7 +34,7 @@ class CommentsController < ApplicationController
     user_message = @comment.user_message
     @comment.destroy
     flash[:notice] = "Comment deleted"
-    redirect_to user_message_path(user_message)
+    redirect_to user_message_path(user_message), status: :see_other
   end
 
   private
