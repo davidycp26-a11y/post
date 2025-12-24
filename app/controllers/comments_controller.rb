@@ -9,10 +9,10 @@ class CommentsController < ApplicationController
 
     if @comment.save
       flash[:notice] = "Comment posted successfully"
-      redirect_to user_message_path(@comment.user_message)
+      redirect_to user_message_path(@comment.user_message), status: :see_other
     else
       flash[:alert] = @comment.errors.full_messages.join(", ")
-      redirect_to user_message_path(@comment.user_message)
+      redirect_to user_message_path(@comment.user_message), status: :see_other
     end
   end
 

@@ -70,7 +70,7 @@
         <% if logged_in? %>
           <div class="comment-form-container">
             <h4>Add a Comment</h4>
-            <%= form_with(model: @comment, local: true, data: { turbo: false }, class: "comment-form") do |f| %>
+            <%= form_with(model: @comment, class: "comment-form") do |f| %>
               <div class="comment-form-input">
                 <%= f.text_area :content,
                     rows: 3,
