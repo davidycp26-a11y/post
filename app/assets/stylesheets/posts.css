@@ -766,7 +766,7 @@
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  /* Split Layout - Stack vertically on mobile */
+  /* Split Layout - Hide right panel on mobile, show only posts list */
   .split-layout {
     flex-direction: column;
     height: auto;
@@ -776,18 +776,17 @@
   .posts-list-panel {
     flex: 1;
     border-right: none;
-    border-bottom: 1px solid var(--color-border);
-    min-height: 50vh;
+    border-bottom: none;
+    min-height: calc(100vh - var(--header-height));
   }
 
+  /* Hide the right detail panel completely on mobile */
   .post-detail-panel {
-    flex: 1;
-    padding: var(--spacing-md);
-    min-height: 50vh;
+    display: none;
   }
 
   .post-detail-placeholder {
-    padding: var(--spacing-xl);
+    display: none;
   }
 
   .post-detail-placeholder i {

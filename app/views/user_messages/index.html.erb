@@ -2,7 +2,7 @@
   <div class="container">
     <div class="split-layout">
       <!-- Left Panel: Posts List -->
-      <div class="posts-list-panel">
+      <div class="posts-list-panel" data-controller="responsive-nav">
         <!-- Sort Filter -->
         <div class="posts-filter">
           <div class="filter-label">
@@ -41,7 +41,7 @@
           </div>
 
           <div class="post-content-preview">
-            <%= link_to user_message_path(msg), class: "content-link", data: { turbo_frame: "post_detail" } do %>
+            <%= link_to user_message_path(msg), class: "content-link", data: { turbo_frame: "post_detail", responsive_nav_target: "link" } do %>
               <%= truncate(msg.content, length: 200) %>
             <% end %>
           </div>

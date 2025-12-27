@@ -1,0 +1,95 @@
+<div class="posts-show-item">
+  <div class="post-layout">
+      <div class="post-left">
+        <%= image_tag(user.avatar_url) %>
+      </div>
+
+      <div class="post-right">
+        <div class="post-user-name">
+          <%= link_to user.name, user %>
+        </div>
+
+        <div class="post-content">
+          <p><%= user_message.content %></p>
+        </div>
+
+        <div class="post-time">
+          <%= user_message.created_at.strftime("%Y-%m-%d %H:%M:%S") %>
+        </div>
+
+        <div class="post-footer">
+          <div class="like-container">
+            <% like = Like.find_by(user_id: current_user.id, user_message_id: user_message.id) %>
+            <% if like %>
+              <%= button_to like_path(like), method: :delete, class: "like-button liked", form: { data: { turbo: true } } do %>
+                <i class="fa fa-heart"></i>
+              <% end %>
+            <% else %>
+              <%= button_to likes_path(user_message_id: user_message.id), method: :post, class: "like-button not-liked", form: { data: { turbo: true } } do %>
+                <i class="fa fa-heart"></i>
+              <% end %>
+            <% end %>
+            <span class="likes-count"><%= likes_count %></span>
+          </div>
+
+          <% if user_message.user_id == current_user.id %>
+            <div class="post-menus">
+              <%= button_to edit_user_message_path(user_message),
+              method: :get, class: "btn btn-edit btn-sm" do %>
+                <i class="fas fa-edit"></i> Edit
+              <% end %>
+              <%= button_to user_message_path(user_message),
+                method: :delete,
+                class: "btn btn-delete btn-sm",
+                data: { confirm: "Are you sure?" } do %>
+                <i class="fas fa-trash"></i> Delete
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <!-- Comments Section -->
+    <div class="comments-section">
+      <h3 class="comments-heading">
+        <i class="fas fa-comments"></i>
+        Comments (<%= comments.count %>)
+      </h3>
+
+      <div class="comments-list">
+        <% if comments.any? %>
+          <%= render comments %>
+        <% else %>
+          <p class="no-comments">No comments yet. Be the first to comment!</p>
+        <% end %>
+      </div>
+
+      <!-- Comment Form -->
+      <% if logged_in? %>
+        <div class="comment-form-container">
+          <h4>Add a Comment</h4>
+          <%= form_with(model: comment, class: "comment-form") do |f| %>
+            <div class="comment-form-input">
+              <%= f.text_area :content,
+                  rows: 3,
+                  placeholder: "Write a comment...",
+                  class: "form-control",
+                  maxlength: 200,
+                  id: "comment-textarea" %>
+              <%= f.hidden_field :user_message_id, value: user_message.id %>
+
+              <div class="comment-form-actions">
+                <%= f.submit "Post Comment", class: "btn btn-primary btn-sm" %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% else %>
+        <p class="login-prompt">
+          <%= link_to "Log in", login_path %> to comment
+        </p>
+      <% end %>
+    </div>
+  </div>
+</div>
