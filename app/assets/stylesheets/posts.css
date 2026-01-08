@@ -1133,6 +1133,34 @@
   font-weight: var(--font-weight-semibold);
 }
 
+/* Inline Post Edit Form */
+.post-edit-form {
+  margin-top: var(--spacing-sm);
+  margin-bottom: var(--spacing-sm);
+}
+
+.inline-post-form textarea {
+  width: 100%;
+  max-width: 100%;
+  resize: vertical;
+  min-height: 100px;
+  margin-bottom: var(--spacing-sm);
+  padding: var(--spacing-md);
+  font-size: var(--font-size-lg);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-family: inherit;
+  line-height: var(--line-height-relaxed);
+  transition: all var(--transition-base);
+  box-sizing: border-box;
+}
+
+.inline-post-form textarea:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-alpha);
+  outline: none;
+}
+
 /* Responsive Comments */
 @media (max-width: 480px) {
   .comment-form {

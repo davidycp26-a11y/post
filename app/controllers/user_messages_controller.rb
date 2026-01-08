@@ -30,10 +30,8 @@ class UserMessagesController < ApplicationController
   end
 
   def create
-    @user_message = UserMessage.new(
-      content: params[:user_message][:content], 
-      user_id: @current_user.id
-      )
+    @user_message = UserMessage.new(user_message_params)
+    @user_message.user_id = @current_user.id
     if @user_message.save
       flash[:notice] = "Post was successfully created."
       redirect_to user_messages_path
@@ -49,13 +47,12 @@ class UserMessagesController < ApplicationController
 
   def update
     @user_message = UserMessage.find_by(id: params[:id])
-    @user_message.content = params[:user_message][:content]
-    if @user_message.save
+    if @user_message.update(user_message_params)
       flash[:notice] = "Post was successfully updated."
-      redirect_to user_messages_path
+      redirect_to user_messages_path, status: :see_other
     else
-      logger.debug "Validation errors: #{@user_message.errors.full_messages.join(', ')}"
-      render :edit, status: :unprocessable_entity
+      flash[:alert] = @user_message.errors.full_messages.join(", ")
+      redirect_to user_message_path(@user_message), status: :see_other
     end
   end
 
@@ -71,5 +68,11 @@ class UserMessagesController < ApplicationController
       flash[:alert] = "Unauthorized access"
       redirect_to user_messages_path
     end
+  end
+
+  private
+
+  def user_message_params
+    params.require(:user_message).permit(:content)
   end
 end

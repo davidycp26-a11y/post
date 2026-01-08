@@ -1,4 +1,4 @@
-<div class="posts-show-item">
+<div class="posts-show-item" data-controller="user-message-edit">
   <div class="post-layout">
       <div class="post-left">
         <%= image_tag(user.avatar_url) %>
@@ -9,8 +9,26 @@
           <%= link_to user.name, user %>
         </div>
 
-        <div class="post-content">
+        <!-- Display Mode -->
+        <div class="post-content" data-user-message-edit-target="display">
           <p><%= user_message.content %></p>
+        </div>
+
+        <!-- Edit Mode -->
+        <div class="post-edit-form" data-user-message-edit-target="form" style="display: none;">
+          <%= form_with(model: user_message, class: "inline-post-form", data: { turbo_frame: "_top" }) do |f| %>
+            <%= f.text_area :content,
+                rows: 5,
+                class: "form-control",
+                maxlength: 300,
+                data: { user_message_edit_target: "textarea" } %>
+            <div class="comment-edit-actions">
+              <%= f.submit "Save", class: "btn btn-primary btn-sm" %>
+              <button type="button" class="btn btn-back btn-sm" data-action="click->user-message-edit#cancel">
+                Cancel
+              </button>
+            </div>
+          <% end %>
         </div>
 
         <div class="post-time">
@@ -33,15 +51,14 @@
           </div>
 
           <% if user_message.user_id == current_user.id %>
-            <div class="post-menus">
-              <%= button_to edit_user_message_path(user_message),
-              method: :get, class: "btn btn-edit btn-sm" do %>
+            <div class="post-menus" data-user-message-edit-target="actions">
+              <button type="button" class="btn btn-edit btn-sm" data-action="click->user-message-edit#edit">
                 <i class="fas fa-edit"></i> Edit
-              <% end %>
+              </button>
               <%= button_to user_message_path(user_message),
                 method: :delete,
                 class: "btn btn-delete btn-sm",
-                data: { confirm: "Are you sure?" } do %>
+                data: { confirm: "Are you sure?", turbo: true } do %>
                 <i class="fas fa-trash"></i> Delete
               <% end %>
             </div>

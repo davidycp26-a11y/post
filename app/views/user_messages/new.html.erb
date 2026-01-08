@@ -3,7 +3,7 @@
     <div class="page-header">
       <h1 class="form-heading">Create a new post</h1>
     </div>
-    <%= form_with(model: @user_message, local: true, data: { turbo: false }) do |f| %>
+    <%= form_with(model: @user_message, data: { turbo: false }) do |f| %>
       <div class="form">
         <div class="form-body">
           <% @user_message.errors.full_messages.each do |msg| %>
