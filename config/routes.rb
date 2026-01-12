@@ -1,28 +1,29 @@
 Rails.application.routes.draw do
+  # Locale scope for all application routes
+  scope "(:locale)", locale: /en|ja/ do
+    # ---[Sessions]---
+    get "login" => "sessions#new", as: :login # create login_path
+    post   "login"  => "sessions#create"
+    delete "logout" => "sessions#destroy", as: :logout # create logout_path
 
-  # ---[Sessions]---
-  get "login" => "sessions#new", as: :login # create login_path
-  post   "login"  => "sessions#create"
-  delete "logout" => "sessions#destroy", as: :logout # create logout_path
+    resources :users
+    get 'users/:id/likes' => 'users#likes', as: :user_likes # create user_likes_path
 
-  resources :users
-  get 'users/:id/likes' => 'users#likes', as: :user_likes # create user_likes_path
+    resources :user_messages
 
-  resources :user_messages
+    resources :likes, only: [:create, :destroy]
 
-  resources :likes, only: [:create, :destroy]
+    resources :comments, only: [:create, :edit, :update, :destroy]
 
-  resources :comments, only: [:create, :edit, :update, :destroy]
+    get '/about' => 'home#about'
 
-  get '/' => 'home#top'
-  get '/about' => 'home#about'
+    # Defines the root path route ("/")
+    root "home#top"
+  end
 
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
+  # Health check outside locale scope
   get "up" => "rails/health#show", as: :rails_health_check
 
-  # Defines the root path route ("/")
-  root "home#top"
-
+  # Mission Control outside locale scope
   mount MissionControl::Jobs::Engine, at: "/jobs"
 end

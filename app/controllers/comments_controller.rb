@@ -8,7 +8,7 @@ class CommentsController < ApplicationController
     @comment.user_id = current_user.id
 
     if @comment.save
-      flash[:notice] = "Comment posted successfully"
+      flash[:notice] = t('flash.comment_posted')
       redirect_to user_message_path(@comment.user_message), status: :see_other
     else
       flash[:alert] = @comment.errors.full_messages.join(", ")
@@ -22,7 +22,7 @@ class CommentsController < ApplicationController
 
   def update
     if @comment.update(comment_params)
-      flash[:notice] = "Comment updated successfully"
+      flash[:notice] = t('flash.comment_updated')
       redirect_to user_message_path(@comment.user_message), status: :see_other
     else
       flash[:alert] = @comment.errors.full_messages.join(", ")
@@ -33,7 +33,7 @@ class CommentsController < ApplicationController
   def destroy
     user_message = @comment.user_message
     @comment.destroy
-    flash[:notice] = "Comment deleted"
+    flash[:notice] = t('flash.comment_deleted')
     redirect_to user_message_path(user_message), status: :see_other
   end
 
@@ -42,14 +42,14 @@ class CommentsController < ApplicationController
   def set_comment
     @comment = Comment.find_by(id: params[:id])
     unless @comment
-      flash[:alert] = "Comment not found"
+      flash[:alert] = t('flash.comment_not_found')
       redirect_to user_messages_path
     end
   end
 
   def ensure_correct_user
     unless @comment.user_id == current_user.id
-      flash[:alert] = "Unauthorized access"
+      flash[:alert] = t('flash.unauthorized')
       redirect_to user_message_path(@comment.user_message)
     end
   end

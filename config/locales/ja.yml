@@ -1,0 +1,181 @@
+ja:
+  # Navigation
+  nav:
+    about: "このサイトについて"
+    posts: "投稿一覧"
+    new_post: "新規投稿"
+    users: "ユーザー一覧"
+    logout: "ログアウト"
+    signup: "新規登録"
+    login: "ログイン"
+    toggle_menu: "メニューを開閉"
+    language: "言語"
+
+  # Flash messages
+  flash:
+    login_required: "この機能を利用するにはログインが必要です。"
+    already_logged_in: "すでにログインしています。"
+    logged_in: "ログインしました。"
+    logged_out: "ログアウトしました。"
+    invalid_credentials: "メールアドレスまたはパスワードが正しくありません。"
+    user_created: "アカウントを作成しました。"
+    user_updated: "アカウント情報を更新しました。"
+    post_created: "投稿を作成しました。"
+    post_updated: "投稿を更新しました。"
+    comment_posted: "コメントを投稿しました。"
+    comment_updated: "コメントを更新しました。"
+    comment_deleted: "コメントを削除しました。"
+    comment_not_found: "コメントが見つかりません。"
+    unauthorized: "この操作を行う権限がありません。"
+
+  # Home page
+  home:
+    hero_badge: "シンプル。速い。つながる。"
+    hero_title: "あなたの声を届けよう"
+    hero_highlight: "世界とつながる"
+    hero_description: "あなたの想いが大切にされるコミュニティへようこそ。アイデアを共有し、会話を生み出し、心を動かす人々と意味のあるつながりを築きましょう。"
+    create_post: "投稿する"
+    browse_posts: "投稿を見る"
+    get_started: "無料で始める"
+    sign_in: "ログイン"
+    active_members: "アクティブメンバー"
+    posts_shared: "投稿数"
+    reactions: "リアクション"
+    lightning_fast: "超高速"
+    lightning_fast_desc: "瞬時に想いを共有し、リアルタイムでつながる"
+    safe_secure: "安全・安心"
+    safe_secure_desc: "業界標準のセキュリティであなたのデータを保護"
+    global_community: "グローバルコミュニティ"
+    global_community_desc: "世界中の素敵な人々とつながる"
+
+  # About page
+  about:
+    title: "Postについて"
+    tagline: "声がつながり、アイデアが花開く場所"
+    our_story: "私たちのストーリー"
+    our_story_text: "Postは「誰もが語る価値のあるストーリーを持っている」というシンプルな信念から生まれました。本物のつながりがこれまで以上に大切な今、あなたの声を第一に考えるプラットフォームを構築しました。アルゴリズムがあなたの考えを隠すことも、複雑な機能が邪魔することもありません。あなた、あなたのアイデア、そして耳を傾ける準備ができたコミュニティがあるだけです。"
+    our_mission: "私たちのミッション"
+    our_mission_text: "私たちは本物の表現の力を信じています。私たちのミッションは、人々が自分の考えを共有し、意味のある会話を生み出し、本物のつながりを築けるあたたかい場所を作ることです。インスピレーションの瞬間を共有するとき、質問をするとき、あるいは単に自分を表現するとき、Postはあなたのキャンバスです。"
+    why_choose: "なぜPostを選ぶのか？"
+    simple_fast: "シンプル＆高速"
+    simple_fast_desc: "瞬時に想いを共有。煩わしさも気を散らすものもなく、純粋でシームレスな表現を。"
+    real_community: "リアルなコミュニティ"
+    real_community_desc: "本物の交流を大切にする人々とつながる。大切な関係を築きましょう。"
+    privacy_matters: "プライバシーを大切に"
+    privacy_matters_desc: "あなたのデータを尊重し、プライバシーを守ります。あなたの投稿は、あなたがコントロール。"
+    support_appreciation: "サポート＆感謝"
+    support_appreciation_desc: "心に響く投稿に愛を示しましょう。すべてのリアクションがつながりを生みます。"
+    global_reach: "世界へ届く"
+    global_reach_desc: "あなたの声は世界中の人々に届きます。境界なくアイデアを共有しましょう。"
+    always_accessible: "いつでもアクセス可能"
+    always_accessible_desc: "いつでもどこでもコミュニティにアクセス。すべてのデバイスに対応したレスポンシブデザイン。"
+    our_values: "私たちの価値観"
+    value_authenticity: "本物であること："
+    value_authenticity_desc: "自分らしく。本物の声が本物のつながりを生む。"
+    value_respect: "尊重："
+    value_respect_desc: "すべての人が耳を傾けられ、尊厳を持って扱われるべきです。"
+    value_simplicity: "シンプルさ："
+    value_simplicity_desc: "素晴らしい体験に複雑さは必要ありません。"
+    value_community: "コミュニティ："
+    value_community_desc: "一緒にいれば、私たちはより強い。すべてのメンバーが大切です。"
+    value_growth: "成長："
+    value_growth_desc: "毎日学び、進化し、お互いを刺激し合う。"
+    growing_community: "成長するコミュニティ"
+    reactions_given: "リアクション数"
+    ready_to_share: "あなたの声を届ける準備はできましたか？"
+    join_community: "コミュニティに参加して、あなたを刺激する人々とつながりましょう。"
+    create_first_post: "最初の投稿を作成"
+    join_today: "今日からPostに参加"
+    credits: "クレジット＆謝辞"
+    avatar_credits: "アバターアイコン：Freepik - Flaticon"
+    color_credits: "カラー：NIPPON COLORS - 日本の伝統色にインスパイア"
+    image_credits: "背景画像：Unsplash"
+    feedback: "ご質問やフィードバックはございますか？ぜひお聞かせください。"
+    built_with_love: "意味のあるつながりのために、心を込めて作りました"
+
+  # Authentication
+  auth:
+    login: "ログイン"
+    signup: "新規登録"
+    email: "メールアドレス"
+    password: "パスワード"
+    name: "名前"
+    back: "戻る"
+
+  # Users
+  users:
+    all_users: "ユーザー一覧"
+    edit_account: "アカウント編集"
+    choose_avatar: "アバターを選択"
+    preview: "プレビュー"
+    submit: "保存"
+    posts_tab: "投稿"
+    likes_tab: "いいね"
+    edit: "編集"
+
+  # Posts
+  posts:
+    sort_by: "並び替え："
+    recent: "新着順"
+    most_liked: "人気順"
+    select_post: "投稿を選択してください"
+    select_post_hint: "リストから投稿をクリックすると、全文とコメントが表示されます"
+    create_new: "新規投稿"
+    edit_post: "投稿を編集"
+    message: "メッセージ"
+    post: "投稿する"
+    save: "保存"
+    delete: "削除"
+    cancel: "キャンセル"
+    confirm_delete: "本当に削除しますか？"
+    ago: "前"
+
+  # Comments
+  comments:
+    title: "コメント"
+    no_comments: "まだコメントがありません。最初のコメントを投稿しましょう！"
+    add_comment: "コメントを追加"
+    write_placeholder: "コメントを入力..."
+    post_comment: "コメントする"
+    login_to_comment: "コメントするにはログインしてください"
+    edit_comment: "コメントを編集"
+    comment: "コメント"
+    confirm_delete: "このコメントを削除しますか？"
+
+  # Common
+  common:
+    back: "戻る"
+    edit: "編集"
+    delete: "削除"
+    save: "保存"
+    cancel: "キャンセル"
+
+  # ActiveRecord validations
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            name:
+              blank: "を入力してください"
+              too_long: "は50文字以内で入力してください"
+            email:
+              blank: "を入力してください"
+              taken: "はすでに登録されています"
+              invalid: "の形式が正しくありません"
+            password:
+              blank: "を入力してください"
+        user_message:
+          attributes:
+            content:
+              blank: "を入力してください"
+              too_long: "は300文字以内で入力してください"
+        comment:
+          attributes:
+            content:
+              blank: "を入力してください"
+              too_long: "は200文字以内で入力してください"
+        like:
+          attributes:
+            user:
+              taken: "はすでにいいねしています"

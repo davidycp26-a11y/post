@@ -1,7 +1,7 @@
 <div class="main posts-new">
   <div class="container">
     <div class="page-header">
-      <h1 class="form-heading">Create a new post</h1>
+      <h1 class="form-heading"><%= t('posts.create_new') %></h1>
     </div>
     <%= form_with(model: @user_message, data: { turbo: false }) do |f| %>
       <div class="form">
@@ -11,13 +11,13 @@
               <%= msg %>
             </div>
           <% end %>
-          <%= f.label :content, "Message" %>
+          <%= f.label :content, t('posts.message') %>
           <%= f.text_area :content, rows: 5, class: "form-control" %>
           <div class="form-actions">
             <%= link_to user_messages_path, class: "btn btn-back" do %>
-              <i class="fas fa-arrow-left"></i> Back
+              <i class="fas fa-arrow-left"></i> <%= t('common.back') %>
             <% end %>
-            <%= f.submit "Post", class: "btn btn-primary" %>
+            <%= f.submit t('posts.post'), class: "btn btn-primary" %>
           </div>
         </div>
       </div>

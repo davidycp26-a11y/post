@@ -18,10 +18,10 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     @user.image_name ||= "default.png"
-      
+
     if @user.save
       session[:user_id] = @user.id
-      flash[:notice] = "User was successfully created."
+      flash[:notice] = t('flash.user_created')
       redirect_to user_path(@user)
     else
       logger.debug "Validation errors: #{@user.errors.full_messages.join(', ')}"
@@ -37,7 +37,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
 
     if @user.update(user_params)
-      flash[:notice] = "User was successfully updated."
+      flash[:notice] = t('flash.user_updated')
       redirect_to user_path(@user)
     else
       render :edit, status: :unprocessable_entity
@@ -52,7 +52,7 @@ class UsersController < ApplicationController
   def ensure_correct_user
     @user = User.find(params[:id])
     unless @user.id == @current_user.id
-      flash[:alert] = "Unauthorized access"
+      flash[:alert] = t('flash.unauthorized')
       redirect_to user_messages_path
     end
   end

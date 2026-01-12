@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="<%= I18n.locale %>">
   <head>
     <title><%= content_for(:title) || "Post" %></title>
     <%= favicon_link_tag 'favicon.ico' %>
@@ -18,7 +18,7 @@
     <link rel="icon" href="/icon.png" type="image/png">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
-    
+
     <!-- Font Awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
@@ -34,7 +34,7 @@
         <%= link_to("Post","/") %>
       </div>
 
-      <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle navigation menu">
+      <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="<%= t('nav.toggle_menu') %>">
         <i class="fas fa-bars"></i>
       </button>
 
@@ -46,60 +46,86 @@
             <% end %>
           </li>
           <li>
-            <%= link_to "/about" do %>
-              <i class="fas fa-info-circle"></i> About
+            <%= link_to about_path do %>
+              <i class="fas fa-info-circle"></i> <%= t('nav.about') %>
             <% end %>
           </li>
           <li>
             <%= link_to user_messages_path do %>
-              <i class="fas fa-comments"></i> Posts
+              <i class="fas fa-comments"></i> <%= t('nav.posts') %>
             <% end %>
           </li>
           <li>
             <%= link_to new_user_message_path do %>
-              <i class="fas fa-plus-circle"></i> New post
+              <i class="fas fa-plus-circle"></i> <%= t('nav.new_post') %>
             <% end %>
           </li>
           <li>
             <%= link_to users_path do %>
-              <i class="fas fa-users"></i> Users
+              <i class="fas fa-users"></i> <%= t('nav.users') %>
             <% end %>
           </li>
           <li>
             <%= link_to logout_path, data: { turbo_method: :delete } do %>
-              <i class="fas fa-sign-out-alt"></i> Log out
+              <i class="fas fa-sign-out-alt"></i> <%= t('nav.logout') %>
             <% end %>
           </li>
         <% else %>
           <li>
-            <%= link_to "/about" do %>
-              <i class="fas fa-info-circle"></i> About
+            <%= link_to about_path do %>
+              <i class="fas fa-info-circle"></i> <%= t('nav.about') %>
             <% end %>
           </li>
           <li>
             <%= link_to new_user_path do %>
-              <i class="fas fa-user-plus"></i> Sign up
+              <i class="fas fa-user-plus"></i> <%= t('nav.signup') %>
             <% end %>
           </li>
           <li>
             <%= link_to login_path do %>
-              <i class="fas fa-sign-in-alt"></i> Log in
+              <i class="fas fa-sign-in-alt"></i> <%= t('nav.login') %>
             <% end %>
           </li>
         <% end %>
+        <li class="language-switcher">
+          <div class="lang-dropdown">
+            <button class="lang-dropdown-btn" type="button">
+              <i class="fas fa-globe"></i>
+              <span><%= I18n.locale == :ja ? '日本語' : 'English' %></span>
+              <i class="fas fa-chevron-down lang-arrow"></i>
+            </button>
+            <div class="lang-dropdown-menu">
+              <%= link_to url_for(locale: :en), class: "lang-dropdown-item #{'active' if I18n.locale == :en}" do %>
+                <span class="lang-flag">🇺🇸</span>
+                <span class="lang-name">English</span>
+                <% if I18n.locale == :en %>
+                  <i class="fas fa-check lang-check"></i>
+                <% end %>
+              <% end %>
+              <%= link_to url_for(locale: :ja), class: "lang-dropdown-item #{'active' if I18n.locale == :ja}" do %>
+                <span class="lang-flag">🇯🇵</span>
+                <span class="lang-name">日本語</span>
+                <% if I18n.locale == :ja %>
+                  <i class="fas fa-check lang-check"></i>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        </li>
       </ul>
     </header>
 
     <script>
-      // Mobile menu toggle
-      document.addEventListener('DOMContentLoaded', function() {
+      // Mobile menu toggle - using event delegation for Turbo compatibility
+      document.addEventListener('click', function(event) {
         const mobileMenuToggle = document.getElementById('mobileMenuToggle');
         const headerMenus = document.getElementById('headerMenus');
 
-        if (mobileMenuToggle && headerMenus) {
-          mobileMenuToggle.addEventListener('click', function() {
+        // Toggle mobile menu when clicking the button
+        if (event.target.closest('#mobileMenuToggle')) {
+          if (headerMenus) {
             headerMenus.classList.toggle('active');
-            const icon = this.querySelector('i');
+            const icon = mobileMenuToggle.querySelector('i');
             if (headerMenus.classList.contains('active')) {
               icon.classList.remove('fa-bars');
               icon.classList.add('fa-times');
@@ -107,27 +133,30 @@
               icon.classList.remove('fa-times');
               icon.classList.add('fa-bars');
             }
-          });
+          }
+          return;
+        }
 
-          // Close menu when clicking outside
-          document.addEventListener('click', function(event) {
-            if (!event.target.closest('header')) {
-              headerMenus.classList.remove('active');
-              const icon = mobileMenuToggle.querySelector('i');
+        // Close mobile menu when clicking outside header
+        if (headerMenus && mobileMenuToggle && !event.target.closest('header')) {
+          headerMenus.classList.remove('active');
+          const icon = mobileMenuToggle.querySelector('i');
+          if (icon) {
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+          }
+        }
+
+        // Close mobile menu when clicking a link inside it
+        if (event.target.closest('.header-menus a')) {
+          if (headerMenus && mobileMenuToggle) {
+            headerMenus.classList.remove('active');
+            const icon = mobileMenuToggle.querySelector('i');
+            if (icon) {
               icon.classList.remove('fa-times');
               icon.classList.add('fa-bars');
             }
-          });
-
-          // Close menu when clicking a link
-          headerMenus.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', function() {
-              headerMenus.classList.remove('active');
-              const icon = mobileMenuToggle.querySelector('i');
-              icon.classList.remove('fa-times');
-              icon.classList.add('fa-bars');
-            });
-          });
+          }
         }
       });
     </script>

@@ -7,7 +7,7 @@
     <div class="comment-right">
       <div class="comment-header">
         <%= link_to comment.user.name, user_path(comment.user), class: "comment-user-name" %>
-        <span class="comment-time"><%= time_ago_in_words(comment.created_at) %> ago</span>
+        <span class="comment-time"><%= time_ago_in_words(comment.created_at) %> <%= t('posts.ago') %></span>
       </div>
 
       <!-- Display Mode -->
@@ -24,9 +24,9 @@
               maxlength: 200,
               data: { comment_edit_target: "textarea" } %>
           <div class="comment-edit-actions">
-            <%= f.submit "Save", class: "btn btn-primary btn-sm" %>
+            <%= f.submit t('common.save'), class: "btn btn-primary btn-sm" %>
             <button type="button" class="btn btn-back btn-sm" data-action="click->comment-edit#cancel">
-              Cancel
+              <%= t('common.cancel') %>
             </button>
           </div>
         <% end %>
@@ -35,13 +35,13 @@
       <% if current_user && comment.user_id == current_user.id %>
         <div class="comment-actions" data-comment-edit-target="actions">
           <button type="button" class="btn-comment-edit" data-action="click->comment-edit#edit">
-            <i class="fas fa-edit"></i> Edit
+            <i class="fas fa-edit"></i> <%= t('common.edit') %>
           </button>
           <%= button_to comment_path(comment),
               method: :delete,
               class: "btn-comment-delete",
-              data: { confirm: "Delete this comment?", turbo: true } do %>
-            <i class="fas fa-trash"></i> Delete
+              data: { confirm: t('comments.confirm_delete'), turbo: true } do %>
+            <i class="fas fa-trash"></i> <%= t('common.delete') %>
           <% end %>
         </div>
       <% end %>

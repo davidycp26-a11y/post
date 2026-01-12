@@ -1,6 +1,6 @@
 <div class="main posts-edit">
   <div class="container">
-    <h1 class="form-heading">Edit Comment</h1>
+    <h1 class="form-heading"><%= t('comments.edit_comment') %></h1>
 
     <%= form_with(model: @comment, local: true, data: { turbo: false }) do |f| %>
       <div class="form">
@@ -9,16 +9,16 @@
             <div class="form-error"><%= msg %></div>
           <% end %>
 
-          <%= f.label :content, "Comment" %>
+          <%= f.label :content, t('comments.comment') %>
           <%= f.text_area :content, rows: 3, class: "form-control", maxlength: 200, id: "edit-char-textarea" %>
           <div class="char-count"><span id="edit-char-counter">0</span> / 200</div>
 
           <%= f.hidden_field :user_message_id, value: @user_message.id %>
 
           <div style="display: flex; gap: 1rem; margin-top: 1rem;">
-            <%= f.submit "Save", class: "btn btn-primary" %>
+            <%= f.submit t('common.save'), class: "btn btn-primary" %>
             <%= link_to user_message_path(@user_message), class: "btn btn-back" do %>
-              <i class="fas fa-times"></i> Cancel
+              <i class="fas fa-times"></i> <%= t('common.cancel') %>
             <% end %>
           </div>
         </div>

@@ -1,31 +1,181 @@
-# Files in the config/locales directory are used for internationalization and
-# are automatically loaded by Rails. If you want to use locales other than
-# English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t "hello"
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t("hello") %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# To learn more about the API, please read the Rails Internationalization guide
-# at https://guides.rubyonrails.org/i18n.html.
-#
-# Be aware that YAML interprets the following case-insensitive strings as
-# booleans: `true`, `false`, `on`, `off`, `yes`, `no`. Therefore, these strings
-# must be quoted to be interpreted as strings. For example:
-#
-#     en:
-#       "yes": yup
-#       enabled: "ON"
-
 en:
-  hello: "Hello world"
+  # Navigation
+  nav:
+    about: "About"
+    posts: "Posts"
+    new_post: "New post"
+    users: "Users"
+    logout: "Log out"
+    signup: "Sign up"
+    login: "Log in"
+    toggle_menu: "Toggle navigation menu"
+    language: "Language"
+
+  # Flash messages
+  flash:
+    login_required: "You must be logged in to access this section."
+    already_logged_in: "You are already logged in."
+    logged_in: "Logged in successfully."
+    logged_out: "Logged out successfully."
+    invalid_credentials: "Invalid email or password."
+    user_created: "User was successfully created."
+    user_updated: "User was successfully updated."
+    post_created: "Post was successfully created."
+    post_updated: "Post was successfully updated."
+    comment_posted: "Comment posted successfully"
+    comment_updated: "Comment updated successfully"
+    comment_deleted: "Comment deleted"
+    comment_not_found: "Comment not found"
+    unauthorized: "Unauthorized access"
+
+  # Home page
+  home:
+    hero_badge: "Simple. Fast. Connected."
+    hero_title: "Share Your Voice"
+    hero_highlight: "Connect With The World"
+    hero_description: "Join a vibrant community where your thoughts matter. Share ideas, spark conversations, and build meaningful connections with people who inspire you."
+    create_post: "Create Post"
+    browse_posts: "Browse Posts"
+    get_started: "Get Started Free"
+    sign_in: "Sign In"
+    active_members: "Active Members"
+    posts_shared: "Posts Shared"
+    reactions: "Reactions"
+    lightning_fast: "Lightning Fast"
+    lightning_fast_desc: "Share your thoughts instantly and connect in real-time"
+    safe_secure: "Safe & Secure"
+    safe_secure_desc: "Your data is protected with industry-standard security"
+    global_community: "Global Community"
+    global_community_desc: "Connect with inspiring people from around the world"
+
+  # About page
+  about:
+    title: "About Post"
+    tagline: "Where voices connect and ideas flourish"
+    our_story: "Our Story"
+    our_story_text: "Post was created with a simple belief: everyone has a story worth sharing. In a world where genuine connection matters more than ever, we built a platform that puts your voice first—no algorithms hiding your thoughts, no complicated features getting in the way. Just you, your ideas, and a community ready to listen."
+    our_mission: "Our Mission"
+    our_mission_text: "We believe in the power of authentic expression. Our mission is to create a welcoming space where people can share their thoughts, spark meaningful conversations, and build genuine connections. Whether you're sharing a moment of inspiration, asking a question, or simply expressing yourself, Post is your canvas."
+    why_choose: "Why Choose Post?"
+    simple_fast: "Simple & Fast"
+    simple_fast_desc: "Share your thoughts instantly. No clutter, no distractions—just pure, seamless expression."
+    real_community: "Real Community"
+    real_community_desc: "Connect with people who value genuine interaction. Build relationships that matter."
+    privacy_matters: "Your Privacy Matters"
+    privacy_matters_desc: "We respect your data and protect your privacy. Your posts, your control."
+    support_appreciation: "Support & Appreciation"
+    support_appreciation_desc: "Show love for posts that resonate with you. Every reaction builds connection."
+    global_reach: "Global Reach"
+    global_reach_desc: "Your voice can reach people across the world. Share ideas without boundaries."
+    always_accessible: "Always Accessible"
+    always_accessible_desc: "Access your community anywhere, anytime. Responsive design for all devices."
+    our_values: "Our Values"
+    value_authenticity: "Authenticity:"
+    value_authenticity_desc: "Be yourself. Real voices create real connections."
+    value_respect: "Respect:"
+    value_respect_desc: "Every person deserves to be heard and treated with dignity."
+    value_simplicity: "Simplicity:"
+    value_simplicity_desc: "Great experiences don't need complexity."
+    value_community: "Community:"
+    value_community_desc: "Together, we're stronger. Every member matters."
+    value_growth: "Growth:"
+    value_growth_desc: "Learn, evolve, and inspire each other daily."
+    growing_community: "Our Growing Community"
+    reactions_given: "Reactions Given"
+    ready_to_share: "Ready to Share Your Voice?"
+    join_community: "Join our community and start connecting with people who inspire you."
+    create_first_post: "Create Your First Post"
+    join_today: "Join Post Today"
+    credits: "Credits & Acknowledgments"
+    avatar_credits: "Avatar icons created by Freepik - Flaticon"
+    color_credits: "Colors inspired by NIPPON COLORS - Traditional Japanese color palette"
+    image_credits: "Background images from Unsplash"
+    feedback: "Have questions or feedback? We'd love to hear from you."
+    built_with_love: "Built with care for meaningful connections"
+
+  # Authentication
+  auth:
+    login: "Log in"
+    signup: "Sign up"
+    email: "Email"
+    password: "Password"
+    name: "Name"
+    back: "Back"
+
+  # Users
+  users:
+    all_users: "All Users"
+    edit_account: "Edit Account"
+    choose_avatar: "Choose Your Avatar"
+    preview: "Preview"
+    submit: "Submit"
+    posts_tab: "Posts"
+    likes_tab: "Likes"
+    edit: "Edit"
+
+  # Posts
+  posts:
+    sort_by: "Sort by:"
+    recent: "Recent"
+    most_liked: "Most Liked"
+    select_post: "Select a post to view"
+    select_post_hint: "Click on any post from the list to see its full content and comments"
+    create_new: "Create a new post"
+    edit_post: "Edit a post"
+    message: "Message"
+    post: "Post"
+    save: "Save"
+    delete: "Delete"
+    cancel: "Cancel"
+    confirm_delete: "Are you sure?"
+    ago: "ago"
+
+  # Comments
+  comments:
+    title: "Comments"
+    no_comments: "No comments yet. Be the first to comment!"
+    add_comment: "Add a Comment"
+    write_placeholder: "Write a comment..."
+    post_comment: "Post Comment"
+    login_to_comment: "Log in to comment"
+    edit_comment: "Edit Comment"
+    comment: "Comment"
+    confirm_delete: "Delete this comment?"
+
+  # Common
+  common:
+    back: "Back"
+    edit: "Edit"
+    delete: "Delete"
+    save: "Save"
+    cancel: "Cancel"
+
+  # ActiveRecord validations
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            name:
+              blank: "can't be blank"
+              too_long: "is too long (maximum is 50 characters)"
+            email:
+              blank: "can't be blank"
+              taken: "has already been taken"
+              invalid: "is invalid"
+            password:
+              blank: "can't be blank"
+        user_message:
+          attributes:
+            content:
+              blank: "can't be blank"
+              too_long: "is too long (maximum is 300 characters)"
+        comment:
+          attributes:
+            content:
+              blank: "can't be blank"
+              too_long: "is too long (maximum is 200 characters)"
+        like:
+          attributes:
+            user:
+              taken: "has already liked this message"

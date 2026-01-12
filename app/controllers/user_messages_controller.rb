@@ -33,7 +33,7 @@ class UserMessagesController < ApplicationController
     @user_message = UserMessage.new(user_message_params)
     @user_message.user_id = @current_user.id
     if @user_message.save
-      flash[:notice] = "Post was successfully created."
+      flash[:notice] = t('flash.post_created')
       redirect_to user_messages_path
     else
       logger.debug "Validation errors: #{@user_message.errors.full_messages.join(', ')}"
@@ -48,7 +48,7 @@ class UserMessagesController < ApplicationController
   def update
     @user_message = UserMessage.find_by(id: params[:id])
     if @user_message.update(user_message_params)
-      flash[:notice] = "Post was successfully updated."
+      flash[:notice] = t('flash.post_updated')
       redirect_to user_messages_path, status: :see_other
     else
       flash[:alert] = @user_message.errors.full_messages.join(", ")
@@ -65,7 +65,7 @@ class UserMessagesController < ApplicationController
   def ensure_correct_user
     @user_message = UserMessage.find_by(id: params[:id])
     unless @user_message.user_id == @current_user.id
-      flash[:alert] = "Unauthorized access"
+      flash[:alert] = t('flash.unauthorized')
       redirect_to user_messages_path
     end
   end

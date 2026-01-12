@@ -1,6 +1,6 @@
 <div class="main users-new">
   <div class="container">
-    <div class="form-heading">Sign up</div>
+    <div class="form-heading"><%= t('auth.signup') %></div>
     <%= form_with(model: @user, local: true, data: { turbo: false }) do |f| %>
     <div class="form users-form">
       <div class="form-body">
@@ -10,17 +10,17 @@
             </div>
           <% end %>
 
-        <%= f.label :name, "Name" %>
+        <%= f.label :name, t('auth.name') %>
         <%= f.text_field :name, class: "form-control" %>
-        
-        <%= f.label :email, "Email" %>
+
+        <%= f.label :email, t('auth.email') %>
         <%= f.email_field :email, class: "form-control" %>
-        
-        <%= f.label :password, "Password" %>
+
+        <%= f.label :password, t('auth.password') %>
         <%= f.password_field :password, class: "form-control" %>
-        
-        <%= f.submit "Sign up", class: "btn btn-primary" %>
-        <%= link_to "Back", root_path, class: "btn btn-secondary" %>    
+
+        <%= f.submit t('auth.signup'), class: "btn btn-primary" %>
+        <%= link_to t('auth.back'), root_path, class: "btn btn-secondary" %>
       </div>
     </div>
     <% end %>

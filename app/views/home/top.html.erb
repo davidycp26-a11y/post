@@ -4,34 +4,32 @@
     <div class="hero-content">
         <div class="hero-badge">
             <i class="fas fa-bolt"></i>
-            <span>Simple. Fast. Connected.</span>
+            <span><%= t('home.hero_badge') %></span>
         </div>
 
         <h1 class="hero-title">
-            Share Your Voice<br>
-            <span class="hero-highlight">Connect With The World</span>
+            <%= t('home.hero_title') %><br>
+            <span class="hero-highlight"><%= t('home.hero_highlight') %></span>
         </h1>
 
         <p class="hero-description">
-            Join a vibrant community where your thoughts matter. Share ideas,
-            spark conversations, and build meaningful connections with people
-            who inspire you.
+            <%= t('home.hero_description') %>
         </p>
 
         <div class="hero-cta">
             <% if logged_in? %>
                 <%= link_to new_user_message_path, class: "btn btn-hero btn-primary" do %>
-                    <i class="fas fa-pencil-alt"></i> Create Post
+                    <i class="fas fa-pencil-alt"></i> <%= t('home.create_post') %>
                 <% end %>
                 <%= link_to user_messages_path, class: "btn btn-hero btn-secondary-hero" do %>
-                    <i class="fas fa-comments"></i> Browse Posts
+                    <i class="fas fa-comments"></i> <%= t('home.browse_posts') %>
                 <% end %>
             <% else %>
                 <%= link_to new_user_path, class: "btn btn-hero btn-primary" do %>
-                    <i class="fas fa-rocket"></i> Get Started Free
+                    <i class="fas fa-rocket"></i> <%= t('home.get_started') %>
                 <% end %>
                 <%= link_to login_path, class: "btn btn-hero btn-secondary-hero" do %>
-                    <i class="fas fa-sign-in-alt"></i> Sign In
+                    <i class="fas fa-sign-in-alt"></i> <%= t('home.sign_in') %>
                 <% end %>
             <% end %>
         </div>
@@ -41,21 +39,21 @@
                 <i class="fas fa-users"></i>
                 <div class="stat-content">
                     <span class="stat-number"><%= User.count %></span>
-                    <span class="stat-label">Active Members</span>
+                    <span class="stat-label"><%= t('home.active_members') %></span>
                 </div>
             </div>
             <div class="stat-item">
                 <i class="fas fa-comments"></i>
                 <div class="stat-content">
                     <span class="stat-number"><%= UserMessage.count %></span>
-                    <span class="stat-label">Posts Shared</span>
+                    <span class="stat-label"><%= t('home.posts_shared') %></span>
                 </div>
             </div>
             <div class="stat-item">
                 <i class="fas fa-heart"></i>
                 <div class="stat-content">
                     <span class="stat-number"><%= Like.count %></span>
-                    <span class="stat-label">Reactions</span>
+                    <span class="stat-label"><%= t('home.reactions') %></span>
                 </div>
             </div>
         </div>
@@ -66,24 +64,24 @@
             <div class="feature-icon">
                 <i class="fas fa-bolt"></i>
             </div>
-            <h3>Lightning Fast</h3>
-            <p>Share your thoughts instantly and connect in real-time</p>
+            <h3><%= t('home.lightning_fast') %></h3>
+            <p><%= t('home.lightning_fast_desc') %></p>
         </div>
 
         <div class="feature-card">
             <div class="feature-icon">
                 <i class="fas fa-shield-alt"></i>
             </div>
-            <h3>Safe & Secure</h3>
-            <p>Your data is protected with industry-standard security</p>
+            <h3><%= t('home.safe_secure') %></h3>
+            <p><%= t('home.safe_secure_desc') %></p>
         </div>
 
         <div class="feature-card">
             <div class="feature-icon">
                 <i class="fas fa-globe"></i>
             </div>
-            <h3>Global Community</h3>
-            <p>Connect with inspiring people from around the world</p>
+            <h3><%= t('home.global_community') %></h3>
+            <p><%= t('home.global_community_desc') %></p>
         </div>
     </div>
 

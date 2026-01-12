@@ -1,9 +1,9 @@
 <div class="main posts-new">
   <div class="container">
     <div class="page-header">
-      <h1 class="form-heading">Edit a post</h1>
+      <h1 class="form-heading"><%= t('posts.edit_post') %></h1>
       <%= link_to user_message_path(@user_message), class: "btn btn-back btn-back-top" do %>
-        <i class="fas fa-arrow-left"></i> Back
+        <i class="fas fa-arrow-left"></i> <%= t('common.back') %>
       <% end %>
     </div>
 
@@ -15,14 +15,14 @@
               <%= msg %>
             </div>
           <% end %>
-        <%= f.label :content, "Message" %>
+        <%= f.label :content, t('posts.message') %>
         <%= f.text_area :content, rows: 5, class: "form-control" %>
         <div class="form-actions">
           <%= link_to user_message_path(@user_message), class: "btn btn-back" do %>
-            <i class="fas fa-arrow-left"></i> Back
+            <i class="fas fa-arrow-left"></i> <%= t('common.back') %>
           <% end %>
-          <%= f.submit "Save", class: "btn btn-primary" %>
-        </div> 
+          <%= f.submit t('posts.save'), class: "btn btn-primary" %>
+        </div>
       </div>
     </div>
   <% end %>

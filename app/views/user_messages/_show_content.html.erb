@@ -23,9 +23,9 @@
                 maxlength: 300,
                 data: { user_message_edit_target: "textarea" } %>
             <div class="comment-edit-actions">
-              <%= f.submit "Save", class: "btn btn-primary btn-sm" %>
+              <%= f.submit t('posts.save'), class: "btn btn-primary btn-sm" %>
               <button type="button" class="btn btn-back btn-sm" data-action="click->user-message-edit#cancel">
-                Cancel
+                <%= t('posts.cancel') %>
               </button>
             </div>
           <% end %>
@@ -53,13 +53,13 @@
           <% if user_message.user_id == current_user.id %>
             <div class="post-menus" data-user-message-edit-target="actions">
               <button type="button" class="btn btn-edit btn-sm" data-action="click->user-message-edit#edit">
-                <i class="fas fa-edit"></i> Edit
+                <i class="fas fa-edit"></i> <%= t('common.edit') %>
               </button>
               <%= button_to user_message_path(user_message),
                 method: :delete,
                 class: "btn btn-delete btn-sm",
-                data: { confirm: "Are you sure?", turbo: true } do %>
-                <i class="fas fa-trash"></i> Delete
+                data: { confirm: t('posts.confirm_delete'), turbo: true } do %>
+                <i class="fas fa-trash"></i> <%= t('common.delete') %>
               <% end %>
             </div>
           <% end %>
@@ -71,40 +71,40 @@
     <div class="comments-section">
       <h3 class="comments-heading">
         <i class="fas fa-comments"></i>
-        Comments (<%= comments.count %>)
+        <%= t('comments.title') %> (<%= comments.count %>)
       </h3>
 
       <div class="comments-list">
         <% if comments.any? %>
           <%= render comments %>
         <% else %>
-          <p class="no-comments">No comments yet. Be the first to comment!</p>
+          <p class="no-comments"><%= t('comments.no_comments') %></p>
         <% end %>
       </div>
 
       <!-- Comment Form -->
       <% if logged_in? %>
         <div class="comment-form-container">
-          <h4>Add a Comment</h4>
+          <h4><%= t('comments.add_comment') %></h4>
           <%= form_with(model: comment, class: "comment-form") do |f| %>
             <div class="comment-form-input">
               <%= f.text_area :content,
                   rows: 3,
-                  placeholder: "Write a comment...",
+                  placeholder: t('comments.write_placeholder'),
                   class: "form-control",
                   maxlength: 200,
                   id: "comment-textarea" %>
               <%= f.hidden_field :user_message_id, value: user_message.id %>
 
               <div class="comment-form-actions">
-                <%= f.submit "Post Comment", class: "btn btn-primary btn-sm" %>
+                <%= f.submit t('comments.post_comment'), class: "btn btn-primary btn-sm" %>
               </div>
             </div>
           <% end %>
         </div>
       <% else %>
         <p class="login-prompt">
-          <%= link_to "Log in", login_path %> to comment
+          <%= link_to t('comments.login_to_comment'), login_path %>
         </p>
       <% end %>
     </div>

@@ -6,26 +6,26 @@
       <% if @current_user && @user.id == @current_user.id %>
         <p><%= @user.email %></p>
         <%= link_to edit_user_path(@user), class: "btn btn-edit" do %>
-          <i class="fas fa-edit"></i> Edit
+          <i class="fas fa-edit"></i> <%= t('users.edit') %>
         <% end %>
       <% end %>
     </div>
 
     <ul class="user-tabs">
-      <li><%= link_to("Posts", user_path(@user.id)) %></li>
-      <li class="active"><%= link_to("Likes", "/users/#{@user.id}/likes") %></li>
+      <li><%= link_to(t('users.posts_tab'), user_path(@user.id)) %></li>
+      <li class="active"><%= link_to(t('users.likes_tab'), user_likes_path(@user)) %></li>
     </ul>
-    
+
     <% @likes.each do |like| %>
       <% user_message = UserMessage.find_by(id: like.user_message_id)%>
-      
+
       <div class="posts-index-item">
         <div class="post-left">
           <%= image_tag(user_message.user.avatar_url, class: "user-image") %>
         </div>
         <div class="post-right">
           <div class="post-user-name">
-            <%= link_to(user_message.user.name, user_path(user_message.user)) %> 
+            <%= link_to(user_message.user.name, user_path(user_message.user)) %>
           </div>
           <%= link_to(user_message.content, user_message_path(user_message)) %>
         </div>
